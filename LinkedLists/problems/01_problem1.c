@@ -237,6 +237,61 @@ int isListEven(Node* head){
     }return 1; // odd
 }
 
+// Bubble sort 
+Node* bubbleSort(Node* head) {
+    if (!head || !head->next) {
+        return head;
+    }
+    int swapped;
+    Node* current;
+    Node* last = NULL;
+    do {
+        swapped = 0;
+        current = head;
+        while (current->next != last) {
+            if (current->data > current->next->data) {
+                int temp = current->data;
+                current->data = current->next->data;
+                current->next->data = temp;
+                swapped = 1;
+            }
+            current = current->next;
+        }
+        last = current;
+    } while (swapped);
+
+    return head;
+}
+
+// selection sort
+Node* selectionSort(Node* head) {
+    if (head == NULL || head->next == NULL)
+        return head;
+    Node* start = head;
+    while (start != NULL) {
+        Node* min = start;
+        Node* current = start->next;
+        while (current != NULL) {
+            if (current->data < min->data) {
+                min = current;
+            }
+            current = current->next;
+        }
+        if (min != start) {
+            int temp = start->data;
+            start->data = min->data;
+            min->data = temp;
+        }
+        start = start->next;
+    }
+
+    return head;
+}
+
+
+
+ 
+
 
 int main(){
     // int LL[] = {3,4,5,32,56,7,8,65,8};
@@ -271,13 +326,17 @@ int main(){
     display(head2);
     */
 
-    int LL[] = {3,4,5,32,56,43,44,36};
+    int LL[] = {103,94,5,2,56,4,44,3};
     Node *head;
     head = createList(LL,8);
     display(head);
     // Node* MId = findMiddle(head);
     // printf("%d\n",MId->data);
     // printListFromEnd(head);
-    printf("%d\n",isListEven(head)); // 1
+    //printf("%d\n",isListEven(head)); // 1
+
+
+    head = selectionSort(head);
+    display(head);
     return 0;
 }
