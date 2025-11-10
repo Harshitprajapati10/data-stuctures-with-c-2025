@@ -7,7 +7,7 @@ def bubble_sort(nums):
                 nums[j], nums[j+1] = nums[j+1],nums[j]
     print(nums)
 
-
+#modified bs
 def bubble_sort_modified(nums):
     for i in range(len(nums)):  
         isSwapped = False
