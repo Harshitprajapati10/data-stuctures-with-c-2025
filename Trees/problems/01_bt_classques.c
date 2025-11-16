@@ -7,7 +7,7 @@ typedef struct BinaryTreeNode{
     struct BinaryTreeNode *right;
 }TreeNode;
 
-
+// create a node
 TreeNode* createNode(int value){
     TreeNode* node = (TreeNode*)malloc(sizeof(TreeNode));
     node->data = value;

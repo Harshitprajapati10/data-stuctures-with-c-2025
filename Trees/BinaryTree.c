@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// struct bt
 typedef struct BinaryTreeNode{
     int data;
     struct BinaryTreeNode *left;
@@ -146,6 +147,36 @@ void BFS(TreeNode* root){
     printf("\n");
 }
 
+
+// average of levels in BT->use BFS
+void AvgOfLVLs(TreeNode* root){
+    if(root==NULL){
+        return;
+    }
+    Queue* q = createQueue(100);
+    enqueue(q,root);
+    int level = 0;
+
+    while (!isEmpty(q)){
+        int levelSize = q->rear - q->front;;
+        double sum = 0;
+        for (int i = 0; i < levelSize; i++){
+            TreeNode* current = dequeue(q);
+            sum += current->data;
+            if(current->left != NULL){
+            enqueue(q,current->left);
+            }
+            if(current->right != NULL){
+                enqueue(q,current->right);
+            }
+        }
+        
+        double avg = sum/levelSize;
+        printf("Avg of level %d: %.2f\n ", level,avg);
+        level ++;
+    }
+}
+
 int main() {
     TreeNode *root = createNode(10);
     root->left = createNode(5);
@@ -168,5 +199,6 @@ int main() {
     postOrder(root);
     printf("\n");
     BFS(root);
+    AvgOfLVLs(root); //10.0,10.0,10.0
     return 0;
 }
