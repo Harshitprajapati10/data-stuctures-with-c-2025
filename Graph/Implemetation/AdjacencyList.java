@@ -41,6 +41,7 @@ public class AdjacencyList{
 
     public static void main(String[] args) {
         int V = 4;
+        @SuppressWarnings("unchecked")
         ArrayList<Edge>[] graph = new ArrayList[V];
         createGraph(graph);
         for(int i=0; i<V; i++){
